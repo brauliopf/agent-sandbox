@@ -1,0 +1,17 @@
+{
+  "name": "agent-sandbox",
+  "version": "1.0.0",
+  "description": "A toy project to practice building an ai agent",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "brauliopf",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "openai": "^4.47.2"
+  }
+}
