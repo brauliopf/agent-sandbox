@@ -48,52 +48,59 @@ async function agent(query) {
     { role:"system", content: systemPrompt },
     { role:"user", content:query }
   ]
-
-  async function react_response(textResponse){
-    // identify an action (assume there is an action <-- TODO: MUST handle this)
-    const textLines = await textResponse.split("\n")
-    const actionRegex = /^Action: (\w+): (.*)$/
-    const matchedStr = await textLines.find(str => actionRegex.test(str))
-  
-    if(matchedStr){
-      const action = actionRegex.exec(matchedStr)
-  
-      if(!availableFunctions.hasOwnProperty(action[1])){
-        throw new Error(`Unknwon action: ${action[1]}: ${action[2]}`)
-      }
-  
-      // execute action (add outpout to log of messages)
-      const additional_info = await availableFunctions[action[1]](action[2])
-      messages.push({role: "assistant", content: `Additional Info: ${additional_info}`})
-      console.log(additional_info)
-    }
-  }
+  const MAX_ITERATIONS = 5
+  const actionRegex = /^Action: (\w+): (.*)$/
 
   try {
-    // Make Request to OpenAI (Cloudflare Worker)
-    // Caching is handled by the worker using AI Gateway from Cloudflare
-    const OPENAI_WORKER_URL = 'https://openai-api-worker.brauliopf.workers.dev/'
-    const response = await fetch(OPENAI_WORKER_URL, {
-        method: 'POST',
-        header: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ // as defined in the header, the body must be of type JSON
-          model: 'gpt-3.5-turbo',
-          messages: messages
-        })
-    })
+    for(let i = 0; i < MAX_ITERATIONS; i++){
+      console.log(`Iteration #${i + 1}`)
 
-    // Get Response
-    if(!response.ok) {
-        throw new Error(`Worker error: ${response_json.error}`)
-    }
-    const response_json = await response.json()
+      // Make Request to OpenAI (Cloudflare Worker)
+      // Caching is handled by the worker using AI Gateway from Cloudflare
+      const OPENAI_WORKER_URL = 'https://openai-api-worker.brauliopf.workers.dev/'
+      const response = await fetch(OPENAI_WORKER_URL, {
+          method: 'POST',
+          header: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ // as defined in the header, the body must be of type JSON
+            model: 'gpt-3.5-turbo',
+            messages: messages
+          })
+      })
+      
+      // Get Response
+      if(!response.ok) { throw new Error(`Worker error: ${response_json.error}`) }
+      const response_json = await response.json()
+
+      // Process Response (if action required, go get action)
+      messages.push({ role: "assistant", content: response_json.content}) // Add message to conversation log
+      const textResponse = response_json.content // decide what to do
+
+      // identify an action (assume there is an action <-- TODO: MUST handle this)
+      const textLines = await textResponse.split("\n")
+      const matchedStr = await textLines.find(str => actionRegex.test(str))
+      console.log('textLines', textLines)
+      console.log('matched', matchedStr)
+      if(matchedStr){
+        const action = actionRegex.exec(matchedStr)
     
-    // Process Response
-    messages.push({ role: "assistant", content: response_json.content}) // Add message to conversation log
-    react_response(response_json.content) // decide what to do
+        if(!availableFunctions.hasOwnProperty(action[1])){
+          throw new Error(`Unknwon action: ${action[1]}: ${action[2]}`)
+        }
+    
+        // execute action (add outpout to log of messages)
+        const additional_info = await availableFunctions[action[1]](action[2])
+        console.log(`add_info: ${additional_info}`)
+        messages.push({role: "assistant", content: `Additional Info: ${additional_info}`})
+        console.log(additional_info)
+      } else {
+        console.log("Agent finished with task")
+        return textResponse
+      }
+      
 
+    }
     console.log(messages)
 
   } catch(error) {
@@ -101,7 +108,7 @@ async function agent(query) {
   }
 }
 
-// agent("What is current weather in Boston?")
-agent("You dont need to know location or weather for this. Just tell me my name?") 
+agent("What is current weather?")
+// agent("You dont need to know location or weather for this. Just tell me my name?")
 
 // NOT RETURNING AN ERROR <--- SO WHAT?
