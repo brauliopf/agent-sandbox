@@ -2,10 +2,10 @@ const path = require('path');
 
 module.exports = {
     target: 'webworker',
-    entry: './src/index.js',
+    entry: './index.js',
     output: {
         filename: './bundle.js',
-        path: path.resolve(__dirname, 'public'),
+        path: path.resolve(__dirname, '../public'),
     },
     mode: 'development'
 };

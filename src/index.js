@@ -1,15 +1,4 @@
-function getCurrentLocation(){
-  return 'Boston, MA'
-}
-
-function getCurrentWeather(){
-  const weather = {
-      temperature: '21',
-      unit: 'C',
-      forecast: 'sunny'
-  }
-  return JSON.stringify(weather)
-}
+import { getCurrentLocation, getCurrentWeather } from "./tools"
 
 console.log("THIS IS FROM INDEX.JS")
 
