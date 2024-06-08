@@ -1,8 +1,8 @@
-export async function getCurrentLocation(){
+function getCurrentLocation(){
   return 'Boston, MA'
 }
 
-export async function getCurrentWeather(){
+function getCurrentWeather(){
   const weather = {
       temperature: '21',
       unit: 'C',
