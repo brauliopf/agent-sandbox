@@ -1,6 +1,6 @@
-console.log("THIS IS FROM INDEX.JS")
-
 import { getCurrentLocation, getCurrentWeather } from "./tools"
+
+console.log("THIS IS FROM INDEX.JS")
 
 const availableFunctions = {
   getCurrentLocation,
