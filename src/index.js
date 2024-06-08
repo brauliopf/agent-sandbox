@@ -1,4 +1,15 @@
-import { getCurrentLocation, getCurrentWeather } from "./tools"
+export async function getCurrentLocation(){
+  return 'Boston, MA'
+}
+
+export async function getCurrentWeather(){
+  const weather = {
+      temperature: '21',
+      unit: 'C',
+      forecast: 'sunny'
+  }
+  return JSON.stringify(weather)
+}
 
 console.log("THIS IS FROM INDEX.JS")
 
