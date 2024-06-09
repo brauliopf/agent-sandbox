@@ -3,3 +3,4 @@ public/
 .config
 .DS_Store
 *.log
+bundles.js
