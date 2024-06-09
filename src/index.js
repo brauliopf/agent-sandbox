@@ -110,7 +110,7 @@ async function agent(query) {
   }
 }
 
-agent("What is current weather?")
+agent("What are good activities to spend time with my family today?")
 // agent("You dont need to know location or weather for this. Just tell me my name?")
 
 // NOT RETURNING AN ERROR <--- SO WHAT?
