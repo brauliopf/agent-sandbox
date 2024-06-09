@@ -1,4 +1,4 @@
-import {ACCUWEATHER_API_KEY} from '../.config'
+const ACCUWEATHER_API_KEY = 'cUdYmQBrT5ceVvOz4yJedEcemWGJAgfY'
 
 export async function getCurrentLocation(){
     return 'Boston, MA'
