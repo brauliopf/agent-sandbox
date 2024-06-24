@@ -1,11 +1,125 @@
-<!doctype html>
-<html>
-    <head>
-        <title>Getting started</title>
-        <link type="text/css" href="index.css">
-    </head>
-    <body>
-        <h1>Tah-Daaaaaaaa...</h1>
-        <script type="text/javascript" src="bundle.js"></script>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Braulio Fernandes - Personal Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">@brauliopf</div>
+        <nav>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#work">Work</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#about">About me</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <img src="https://www.dropbox.com/scl/fi/rb4pbds8098j9cqdjqqel/profile_bgnull.png?rlkey=23j8g9h89nfx52cvpbkkcdb0i&dl=0" alt="Braulio Fernandes" class="profile-photo">
+            <h1>Hey there. I'm Braulio.</h1>
+            <p class="mission-statement">Your mission statement goes here.</p>
+            <div class="expertise">
+                <h2>Core Areas of Expertise:</h2>
+                <ul>
+                    <li>Integrated customer experience</li>
+                    <li>Data-informed product management</li>
+                    <li>Product development execution</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="work">
+            <h2>Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Senior Product Analyst</h3>
+                    <p>Providence</p>
+                    <p>June 2023 - January 2024</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Product Manager</h3>
+                    <p>INHERET, Inc.</p>
+                    <p>August 2022 - March 2023</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>MBA Candidate</h3>
+                    <p>University of Michigan - Stephen M. Ross School of Business</p>
+                    <p>June 2020 - April 2022</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Sr Product Manager, Online Subscription</h3>
+                    <p>Associação Nova Escola</p>
+                    <p>October 2017 - March 2019</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Product Manager, Seller Experience</h3>
+                    <p>enjoei</p>
+                    <p>April 2016 - October 2017</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Platform Product Manager</h3>
+                    <p>enjoei</p>
+                    <p>April 2015 - April 2016</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Technical Product Manager</h3>
+                    <p>VivaReal</p>
+                    <p>February 2013 - December 2013</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Founder and Product Leader</h3>
+                    <p>AindaTem</p>
+                    <p>January 2012 - December 2012</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Pet Projects</h2>
+            <div class="project-grid">
+                <!-- Add your project items here -->
+                <div class="project-item">
+                    <img src="project1-screenshot.jpg" alt="Project 1">
+                    <h3>Project 1 Title</h3>
+                    <p>Short description of Project 1 goes here.</p>
+                    <a href="#" class="project-link">View Project</a>
+                </div>
+                <!-- Repeat for other projects -->
+            </div>
+        </section>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <p>Add your personal bio and information here.</p>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <form id="contact-form">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Braulio Fernandes. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
 </html>
